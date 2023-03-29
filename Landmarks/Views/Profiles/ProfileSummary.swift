@@ -8,7 +8,7 @@ struct ProfileSummary: View {
     var body: some View {
         ScrollView {
             VStack{
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: 15) {
                     Text(profile.username)
                         .bold()
                         .font(.title)
@@ -17,16 +17,17 @@ struct ProfileSummary: View {
                     Text("Seasonal Photos: \(profile.seasonalPhoto.rawValue)")
                     Text("Goal Date: ") + Text(profile.goalDate, style: .date)
                 }
+                .padding(.bottom)
             }
-            
             Divider()
             
             VStack(alignment: .leading) {
                                 Text("Completed Badges")
-                                    .font(.headline)
+                    .font(.headline)
+                    .multilineTextAlignment(.leading)
 
                                 ScrollView(.horizontal) {
-                                    HStack {
+                                    HStack(alignment: .center) {
                                         HikeBadge(name: "First Hike")
                                         HikeBadge(name: "Earth Day")
                                             .hueRotation(Angle(degrees: 90))
@@ -36,7 +37,10 @@ struct ProfileSummary: View {
                                     }
                                     .padding(.bottom)
                                 }
-                            }
+                                .padding([.top, .leading])
+                                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+            }
+            .padding([.top, .leading, .bottom])
             
             Divider()
             
@@ -45,7 +49,9 @@ struct ProfileSummary: View {
                     .font(.headline)
 
                 HikeView(hike: modelData.hikes[0])
+                    
             }
+            .padding([.top, .leading])
 
         }
     }
